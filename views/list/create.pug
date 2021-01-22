@@ -1,0 +1,46 @@
+extends ../layout/default.pug
+
+block content
+	.wrapper
+		h2.title
+		form(action="/list/create" method="post" onsubmit="return onSave(this);")
+		table.city-wrap.table.table-striped.text-center
+			thead.thead-dark
+				tr
+					th 번호
+					th 도서명
+					th 저자
+					th 등록일
+					th 관리
+			tbody
+				each v in data
+					tr
+						td= v.id
+						td= v.name
+						td= v.writer
+						td= v.wdate
+						td
+							a(href=`javascript:onRemove(${v.id})`).mr-2
+								i.fa.fa-trash-alt
+							a(href=`/list/update/${v.id}`)
+								i.fa.fa-edit
+		.wr-wrapper.p-4
+			form(action="/list/save" method="post" onsubmit="return onSave(this);")
+				table.table
+					tbody
+						tr
+							td 도서명
+							td.form-inline
+								input.form-control(type="text" name="name" placeholder="도서명")
+						tr
+							td 저자
+							td.form-inline
+								input.form-control(type="text" name="writer" placeholder="저자")
+						tr
+							td 등록일
+							td.form-inline
+								input.form-control(type="number" name="wdate" placeholder="등록일")
+
+				.text-center
+					button.btn.btn-primary 도서 등록
+					button.btn.btn-danger(type="reset") 다시 작성

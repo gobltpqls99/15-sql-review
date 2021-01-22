@@ -1,0 +1,25 @@
+extends ../layout/default.pug
+
+block content
+	.wrapper
+		h2.title 도시 수정
+		.wr-wrapper.p-4
+			form(action="/list/update" method="post" onsubmit="return onUpdate(this);")
+				table.table
+					tbody
+						tr
+							td 도서명
+							td.form-inline
+								input.form-control(type="text" name="name" placeholder="도서명" value=`${r.name}`)
+						tr
+							td 저자
+							td.form-inline
+								input.form-control(type="text" name="writer" placeholder="저자" value=`${r.writer}`)
+						tr
+							td 등록일
+							td.form-inline
+								input.form-control(type="number" name="wdate" placeholder="등록일" value=`${r.wdate}`)
+
+				.text-center
+					button.btn.btn-primary 도서 등록
+					button.btn.btn-danger(type="reset") 다시 작성
