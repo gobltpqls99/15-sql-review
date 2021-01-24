@@ -14,8 +14,8 @@ router.get('/', function (req, res) {
   var sql = 'SELECT * FROM books ORDER BY id ASC';
 
   var onQuery = function onQuery(err, r) {
-    res.render('list/create', {
-      file: 'list',
+    res.render('book/create', {
+      file: 'book',
       data: r
     });
   };
@@ -23,9 +23,9 @@ router.get('/', function (req, res) {
   connection.query(sql, onQuery);
 }); //도시 등록
 
-router.get('/list', function (req, res) {
-  res.render('list/create', {
-    file: 'list'
+router.get('/create', function (req, res) {
+  res.render('book/create', {
+    file: 'book'
   });
 }); //도시 등록(저장)
 
@@ -38,7 +38,7 @@ router.post('/save', function (req, res) {
   var value = [name, writer, wdate];
 
   var onQuery = function onQuery(err, r) {
-    res.redirect('/list');
+    res.redirect('/book');
   };
 
   connection.query(sql, value, onQuery);
@@ -48,7 +48,7 @@ router.get('/remove/:id', function (req, res) {
   var sql = 'DELETE FROM books WHERE id=' + req.params.id;
 
   var onQuery = function onQuery(err, r) {
-    res.redirect('/list');
+    res.redirect('/book');
   };
 
   connection.query(sql, onQuery);
@@ -58,8 +58,8 @@ router.get('/update/:id', function (req, res) {
   var sql = 'SELECT * FROM books WHERE id=' + req.params.id;
 
   var onQuery = function onQuery(err, r) {
-    res.render('list/update', {
-      file: 'list',
+    res.render('book/update', {
+      file: 'books',
       r: r[0]
     });
   };
@@ -76,7 +76,7 @@ router.post('/update', function (req, res) {
   var value = [name, writer, wdate, id];
 
   var onQuery = function onQuery(err, r) {
-    res.redirect('/list');
+    res.redirect('/book');
   };
 
   connection.query(sql, value, onQuery);

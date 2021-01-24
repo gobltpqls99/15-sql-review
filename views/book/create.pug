@@ -2,8 +2,7 @@ extends ../layout/default.pug
 
 block content
 	.wrapper
-		h2.title
-		form(action="/list/create" method="post" onsubmit="return onSave(this);")
+		h2.title.py-4 
 		table.city-wrap.table.table-striped.text-center
 			thead.thead-dark
 				tr
@@ -22,10 +21,14 @@ block content
 						td
 							a(href=`javascript:onRemove(${v.id})`).mr-2
 								i.fa.fa-trash-alt
-							a(href=`/list/update/${v.id}`)
+							a(href=`/book/update/${v.id}`)
 								i.fa.fa-edit
+
+
+
+
 		.wr-wrapper.p-4
-			form(action="/list/save" method="post" onsubmit="return onSave(this);")
+			form(action="/book/save" method="post" onsubmit="return onSave(this);")
 				table.table
 					tbody
 						tr
@@ -42,5 +45,6 @@ block content
 								input.form-control(type="number" name="wdate" placeholder="등록일")
 
 				.text-center
-					button.btn.btn-primary 도서 등록
+					button.btn.btn-primary
+						a(href="/book/create") 도서 등록
 					button.btn.btn-danger(type="reset") 다시 작성

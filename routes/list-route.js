@@ -8,15 +8,15 @@ const numeral = require('numeral');
 router.get('/', (req, res) => {
 	const sql = 'SELECT * FROM books ORDER BY id ASC';
 	const onQuery = (err, r) => {
-		res.render('list/create', { file: 'list', data: r });
+		res.render('book/create', { file: 'book', data: r });
 	}
 	connection.query(sql, onQuery);
 });
 
 
 //도시 등록
-router.get('/list', (req, res) => {
-	res.render('list/create', { file: 'list' });
+router.get('/create', (req, res) => {
+	res.render('book/create', { file: 'book' });
 });
 
 
@@ -26,7 +26,7 @@ router.post('/save', (req, res) => {
 	const sql = "INSERT INTO books SET name=?, writer=?, wdate=?";
 	const value = [ name, writer, wdate ];
 	const onQuery = (err, r) => {
-		res.redirect('/list');
+		res.redirect('/book');
 	}
 	connection.query(sql, value, onQuery);
 });
@@ -35,7 +35,7 @@ router.post('/save', (req, res) => {
 router.get('/remove/:id', (req, res) => {
 	const sql = 'DELETE FROM books WHERE id='+req.params.id;
 	const onQuery = (err, r) => {
-		res.redirect('/list');
+		res.redirect('/book');
 	}
 	connection.query(sql, onQuery);
 });
@@ -50,7 +50,7 @@ router.get('/remove/:id', (req, res) => {
 router.get('/update/:id', (req, res) => {
 	const sql = 'SELECT * FROM books WHERE id='+req.params.id;
 	const onQuery = (err, r) => {
-		res.render('list/update', { file: 'list', r: r[0] });
+		res.render('book/update', { file: 'books', r: r[0] });
 	}
 	connection.query(sql, onQuery);
 });
@@ -60,9 +60,9 @@ router.post('/update', (req, res) => {
 	const sql = 'UPDATE books SET name=?,writer=?,wdate=? WHERE id=?';
 	const value = [ name, writer, wdate, id ];
 	const onQuery = (err, r) => {
-		res.redirect('/list');
+		res.redirect('/book');
 	}
 	connection.query(sql, value, onQuery);
-})
+});
 
 module.exports = router;

@@ -1,6 +1,6 @@
 function onSave(f) {
 	if(f.name.value.trim() == "") {
-		alert('도시명은 필수정보 입니다.');
+		alert('도서명을 입력해주세요.');
 		f.name.focus();
 		return false;
 	}

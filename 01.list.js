@@ -4,7 +4,7 @@ const path = require('path');
 const moment = require('moment');
 const { mysql, connection } = require('./modules/mysql-conn');
 
-const listRouter = require('./routes/list-route');
+const bookRouter = require('./routes/list-route');
 
 app.listen(3000, () => { console.log('http://127.0.0.1:3000'); });
 app.set('view engine', 'pug');
@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/', express.static(path.join(__dirname, 'public')));
-app.use('/list', listRouter);
+app.use('/book', bookRouter);
 
 app.use((req, res) => {
 	res.send('/404');
